@@ -41,12 +41,21 @@ import com.example.pantallas.navegacion.AppScreen
 import com.example.pruebapractica.R
 import kotlin.coroutines.coroutineContext
 
+/**
+ * Pantalla principal de la aplicación que muestra el formulario.
+ *
+ * @param navController Controlador de navegación para navegar entre pantallas.
+ */
 @Composable
 fun FirstScreen(navController: NavController){
     FirstBody(navController = navController)
 }
 
-
+/**
+ * Cuerpo de la pantalla principal que contiene el encabezado y los campos del formulario.
+ *
+ * @param navController Controlador de navegación para navegar entre pantallas.
+ */
 @Composable
 fun FirstBody(navController: NavController){
     var show by rememberSaveable { mutableStateOf(false) }
@@ -132,6 +141,9 @@ fun FirstBody(navController: NavController){
     }
 }
 
+/**
+ * Encabezado de la pantalla principal.
+ */
 @Composable
 fun Cabecera(){
     Box(modifier = Modifier
@@ -151,7 +163,9 @@ fun Cabecera(){
 }
 
 /**
- * Mensaje de error que sale cuando no se rellenaron los campos correctamente
+ * Mensaje de error
+ *
+ * @param show Boolean para mostrar el mensaje de error
  */
 @Composable
 fun MensajeError(show: Boolean){
@@ -172,6 +186,12 @@ fun MensajeError(show: Boolean){
 
 /**
  * Comprueba que los datos sean correctos
+ *
+ * @param nombre nombre del usuario
+ * @param apellidos apellidos del usuario
+ * @param edad edad del usuario
+ * @param telf numero de teléfono del usuario
+ * @param dni dni del usuario
  * @return True si el dato es incorrecto o false si todos los campos estan correctamente puestos
  */
 fun comprobarDatos(nombre: String,apellidos: String, edad: String, telf: String, dni: String): Boolean{
@@ -189,6 +209,8 @@ fun comprobarDatos(nombre: String,apellidos: String, edad: String, telf: String,
 
 /**
  * comprueba que el dni sea válido según el citerio que se usa para crear los Nif
+ * @param dni String introducido por el usuario
+ * @return true si es correcto false si es invalidos
  */
 fun comprobarDni(dni: String): Boolean{
     return if(dni.length > 9 || dni.length < 9 || !dni.substring(0, 8).all{it.isDigit()}){
@@ -211,6 +233,8 @@ fun comprobarDni(dni: String): Boolean{
 
 /**
  * Comprueba un telefono de 9 dígitos sin el prefijo del país
+ * @param telf String introducido por el usuario
+ * @return true si es correcto false si es invalidos
  */
 fun validarTelf(telf: String): Boolean{
     return if (telf.length > 9 || telf.length < 9 || !telf.all{it.isDigit()}){
@@ -222,6 +246,8 @@ fun validarTelf(telf: String): Boolean{
 
 /**
  * Valida que la edad sea un número
+ * @param edad String introducido por el usuario
+ * @return true si es correcto false si es invalidos
  */
 fun validarEdad(edad: String): Boolean{
     return if (edad.all { it.isDigit()}){
