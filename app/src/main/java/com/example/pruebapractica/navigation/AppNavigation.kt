@@ -25,6 +25,7 @@ fun AppNavigation(){
                 type = NavType.StringType
             })
         ){
+            //pasamos los parametros con los argumentos a la segunda pantalla para que los muestre
             SecondScreen(
                 navController,
                 it.arguments?.getString("nombre"),
